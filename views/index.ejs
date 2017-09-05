@@ -1,7 +1,22 @@
 <!--includes the partials, so all you need to write is the body!-->
 <% include partials/header %>
 
+<h1>Welcome to Dr. PJs MakersBnB!</h1>
+
 <!--stuff goes here-->
+<h1>Add Room</h1>
+<form method="POST" action="/rooms/add">
+    <label>Room Name</label><br>
+    <input type="text" name="room">
+    <br>
+    <label>Date available: Start</label><br>
+    <input type="date" name="age">
+    <br><br>
+    <label>Date available: End</label><br>
+    <input type="date" name="age">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
 
 <% include partials/footer %>
 
