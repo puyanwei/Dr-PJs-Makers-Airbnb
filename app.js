@@ -6,45 +6,32 @@ var Room = require('./models/room');
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['rooms']);
 
-
 var app = express();
 
-// app.get(path, callback function).
-
-var logger = function(req, res, next) {
-  console.log('logging');
-  next()
-};
-
-// Logger is referred to as middleware, all logger stuff needs to be above path definitions
-// 'app.use' runs whatever inside it runs every time you run a page
-app.use(logger);
+// var logger = function(req, res, next) {
+//   console.log('logging...');
+//   next()
+// };
+// app.use(logger);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-
 app.use(function(req, res, next) {
   res.locals.errors = null;
   next()
 });
-
-// Sets up error formatting when things aren't inputted correctly
 app.use(expressValidator());
 
-// view engine, accesses files within the views directory
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-var rooms = [];
-
 var current_user = null;
 
-// Our paths!
 app.get('/', function(req, res) {
     db.rooms.find(function (err, docs) {
-        console.log('break');
         console.log(docs);
         res.render('index', {
             rooms: docs,
@@ -77,9 +64,7 @@ app.post('/rooms/add', function(req, res) {
                                 req.body.location,
                                 req.body.description,
                                 req.body.price);
-        // rooms.push(newRoom);
         db.rooms.insert(newRoom);
-        console.log(rooms);
         db.rooms.find(function (err, docs) {
             console.log(docs);
             res.render('index', {
@@ -88,7 +73,6 @@ app.post('/rooms/add', function(req, res) {
         });
     }
 });
-
 
 
 var server = app.listen(1337, function() {
