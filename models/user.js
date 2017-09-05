@@ -1,10 +1,10 @@
-var User = function (name){
+var User = function(name) {
   this.name = name
 
 };
 
-User.prototype.addRoom = function(roomName){
-  this.room = roomName;
+User.prototype.addRoom = function(location) {
+  this.room = location;
 };
 
 module.exports = User;
