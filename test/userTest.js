@@ -9,7 +9,8 @@ describe('User', function() {
     user = new User();
     room = {
       location: "London",
-      description: "This is my lovely room"
+      description: "This is my lovely room",
+      price: "£230"
     }
   });
 
@@ -23,8 +24,8 @@ describe('User', function() {
     expect(user.room.description).to.equal("This is my lovely room");
   });
 
-  // it('user can add a description', function() {
-  //   user.addRoom("London", "This is my lovely room");
-  //   expect(user.room.description).to.equal("This is my lovely room");
-  // });
+  it('adds a room price per night', function() {
+    user.addRoom(room);
+    expect(user.room.price).to.equal("£230");
+  });
 });

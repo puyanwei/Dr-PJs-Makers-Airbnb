@@ -1,9 +1,22 @@
-// var Room = require('../models/room');
-// var expect = require('chai').expect;
-//
-// describe('Room', function() {
-//
-//   it('show the instance of a room', function() {
-//     // body...
-//   });
-// });
+var Room = require('../models/room');
+var expect = require('chai').expect;
+
+describe('Room', function() {
+  var room;
+
+  beforeEach(function() {
+    room = new Room("London", "This is my lovely room", "£230");
+  });
+
+  it('adds a room location', function() {
+    expect(room.location).to.equal("London");
+  });
+
+  it('adds a room description', function() {
+    expect(room.description).to.equal("This is my lovely room");
+  });
+
+  it('adds a room price per night', function() {
+    expect(room.price).to.equal("£230");
+  });
+});
