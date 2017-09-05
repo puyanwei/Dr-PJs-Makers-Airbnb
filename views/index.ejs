@@ -19,6 +19,9 @@
     <label>Room Name</label><br>
     <input type="text" name="title">
     <br>
+    <label>Owner</label><br>
+    <input type="text" name="owner">
+    <br>
     <label>Location</label><br>
     <input type="text" name="location">
     <br>
@@ -43,6 +46,7 @@
 <% rooms.forEach(function(room) { %>
     <li>
         <%= room.title %>,
+        <%= room.owner %>,
         <%= room.location %>,
         <%= room.description %>,
         £<%= room.price %>
