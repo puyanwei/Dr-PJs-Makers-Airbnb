@@ -38,26 +38,26 @@ app.use(expressValidator());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-var users = [{
-    first_name: 'Jeff',
-    last_name: 'Goldblum',
-    age: 30
-  },
-  {
-    first_name: 'Sarah',
-    last_name: 'Connor',
-    age: 23
-  },
-  {
-    first_name: 'John',
-    last_name: 'Doe',
-    age: 12
-  }
-];
+var rooms = [];
+
 // Our paths!
 app.get('/', function(req, res) {
     res.render('index', {
+      rooms: rooms
+    })
+});
 
+app.post('/rooms/add', function(req, res) {
+
+    var newRoom = {
+      roomName: req.body.roomName
+    };
+
+    rooms.push(newRoom);
+    console.log(rooms);
+
+    res.render('index', {
+      rooms: rooms
     })
 });
 

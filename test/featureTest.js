@@ -19,16 +19,13 @@ describe('App', function() {
 
         it('can add a room', function(done) {
             browser.visit(url, function() {
-                browser.fill('input[name=room]', 'Makers Academy');
-                browser.document.forms[0].submit();
-                browser.wait().then(function() {
+                browser.fill('input[name=roomName]', 'Makers Academy')
+                .pressButton('Submit', function() {
                     console.log('Form submitted ok!');
-                    browser.viewInBrowser();
+                    expect(browser.text('body')).to.include('Makers Academy');
                 });
-                expect(browser.text('body')).to.include('Makers Academy')
                 done();
             })
-
         })
     })
 });
