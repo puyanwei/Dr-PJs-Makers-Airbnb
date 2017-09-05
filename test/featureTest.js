@@ -17,18 +17,8 @@ describe('App', function() {
             })
         });
 
-        it('can add a room', function(done) {
-            browser.visit(url, function() {
-                browser.fill('input[name=title]', 'Makers Academy')
-                .pressButton('Submit', function() {
-                    console.log('Form submitted ok!');
-                    expect(browser.text('body')).to.include('Makers Academy');
-                });
-                done();
-            })
-        })
-        console.log('here')
-        it('can add location, description and price', function(done) {
+        console.log('here');
+        it('can add room with location, description and price', function(done) {
             browser.visit(url, function() {
                 browser.fill('input[name=title]', 'Makers Academy')
                 .fill('input[name=location]', 'London')
@@ -36,17 +26,27 @@ describe('App', function() {
                 .fill('input[name=price]', '200')
                 .pressButton('Submit', function() {
                     console.log('Form submitted ok!');
-                    expect(browser.text('body')).to.include('London')
-                    expect(browser.text('body')).to.include('Makers Academy')
-                    expect(browser.text('body')).to.include('My lovely home')
-                    expect(browser.text('body')).to.include('£200')
+                    expect(browser.text('body')).to.include('London');
+                    expect(browser.text('body')).to.include('Makers Academy');
+                    expect(browser.text('body')).to.include('My lovely home');
+                    expect(browser.text('body')).to.include('£200');
                     done();
                 });
-
             });
         });
 
-
+        it('shows errors if not completing form', function(done) {
+            browser.visit(url, function() {
+                browser.fill('input[name=title]', 'Makers Academy')
+                    .fill('input[name=description]', 'My lovely home')
+                    .fill('input[name=price]', '200')
+                .pressButton('Submit', function() {
+                    console.log('Form submitted ok!');
+                    expect(browser.text('body')).to.include('Location must be filled in');
+                    done();
+                })
+            });
+        })
     })
 });
 

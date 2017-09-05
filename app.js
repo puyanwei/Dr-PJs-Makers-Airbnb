@@ -49,20 +49,32 @@ app.get('/', function(req, res) {
 
 app.post('/rooms/add', function(req, res) {
 
-    var newRoom = {
-      title         : req.body.title,
-      location      : req.body.location,
-      description   : req.body.description,
-      price         : req.body.price
+    req.checkBody('title', 'Title is required').notEmpty();
+    req.checkBody('location' , 'Location must be filled in').notEmpty();
+    req.checkBody('description', 'Description must be filled in').notEmpty();
+    req.checkBody('price'       , 'Price must be filled in').notEmpty();
 
-    };
+    var errors = req.validationErrors();
 
-    rooms.push(newRoom);
-    console.log(rooms);
+    if (errors) {
+        res.render('index', {
+            rooms: rooms,
+            errors: errors
+        })
+    } else {
+        var newRoom = {
+            title         : req.body.title,
+            location      : req.body.location,
+            description   : req.body.description,
+            price         : req.body.price
 
-    res.render('index', {
-      rooms: rooms
-    })
+        };
+        rooms.push(newRoom);
+        console.log(rooms);
+        res.render('index', {
+            rooms: rooms
+        })
+    }
 });
 
 

@@ -3,6 +3,16 @@
 
 <h1>Welcome to Dr. PJs MakersBnB!</h1>
 
+<% if(errors != undefined){ %>
+<ul>
+    <% errors.forEach(function(error){ %>
+    <li>
+        <%= error.msg %>
+    </li>
+    <% })%>
+</ul>
+<% } %>
+
 <!--stuff goes here-->
 <h2>Add Room</h2>
 <form method="POST" action="/rooms/add">
@@ -12,10 +22,10 @@
     <label>Location</label><br>
     <input type="text" name="location">
     <br>
-    <label>Price</label><br>
+    <label>Description</label><br>
     <input type="text" name="description">
     <br>
-    <label>Description</label><br>
+    <label>Price (£/pm)</label><br>
     <input type="text" name="price">
     <br>
     <label>Date available: Start</label><br>
@@ -32,9 +42,9 @@
 <ul>
 <% rooms.forEach(function(room) { %>
     <li>
-        <%= room.title %>
-        <%= room.location %>
-        <%= room.description %>
+        <%= room.title %>,
+        <%= room.location %>,
+        <%= room.description %>,
         £<%= room.price %>
     </li>
 <% })%>
