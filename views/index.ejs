@@ -7,13 +7,22 @@
 <h2>Add Room</h2>
 <form method="POST" action="/rooms/add">
     <label>Room Name</label><br>
-    <input type="text" name="roomName">
+    <input type="text" name="title">
+    <br>
+    <label>Location</label><br>
+    <input type="text" name="location">
+    <br>
+    <label>Price</label><br>
+    <input type="text" name="description">
+    <br>
+    <label>Description</label><br>
+    <input type="text" name="price">
     <br>
     <label>Date available: Start</label><br>
-    <input type="date" name="age">
+    <input type="date" name="startDate">
     <br><br>
     <label>Date available: End</label><br>
-    <input type="date" name="age">
+    <input type="date" name="endDate">
     <br><br>
     <button type="submit" name="Submit">Submit</button>
 </form>
@@ -23,11 +32,12 @@
 <ul>
 <% rooms.forEach(function(room) { %>
     <li>
-        <%= room.roomName %>
+        <%= room.title %>
+        <%= room.location %>
+        <%= room.description %>
+        £<%= room.price %>
     </li>
 <% })%>
 </ul>
 
 <% include partials/footer %>
-
-

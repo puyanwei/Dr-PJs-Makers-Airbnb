@@ -50,7 +50,11 @@ app.get('/', function(req, res) {
 app.post('/rooms/add', function(req, res) {
 
     var newRoom = {
-      roomName: req.body.roomName
+      title         : req.body.title,
+      location      : req.body.location,
+      description   : req.body.description,
+      price         : req.body.price
+
     };
 
     rooms.push(newRoom);
