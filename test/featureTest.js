@@ -24,12 +24,14 @@ describe('App', function() {
                 .fill('input[name=location]', 'London')
                 .fill('input[name=description]', 'My lovely home')
                 .fill('input[name=price]', '200')
+                .fill('input[name=owner]', 'Kay Lovelace')
                 .pressButton('Submit', function() {
                     console.log('Form submitted ok!');
                     expect(browser.text('body')).to.include('London');
                     expect(browser.text('body')).to.include('Makers Academy');
                     expect(browser.text('body')).to.include('My lovely home');
                     expect(browser.text('body')).to.include('£200');
+                    expect(browser.text('body')).to.include('Kay Lovelace');
                     done();
                 });
             });
