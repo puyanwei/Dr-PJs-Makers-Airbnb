@@ -1,8 +1,8 @@
 var User = function(name) {
-  this.name = name
+  this.name = name;
 };
 
-User.prototype.addRoom = function(room = new Room) {
+User.prototype.addRoom = function(room) {
   this.room = room;
 };
 

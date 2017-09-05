@@ -5,7 +5,7 @@ describe('Room', function() {
   var room;
 
   beforeEach(function() {
-    room = new Room("Double room in Central London", "London", "This is my lovely room", "£230");
+    room = new Room("Bob", "Double room in Central London", "London", "This is my lovely room", "£230");
   });
 
   it('adds a room title', function() {
@@ -22,5 +22,9 @@ describe('Room', function() {
 
   it('adds a room price per night', function() {
     expect(room.price).to.equal("£230");
+  });
+
+  it('adds an owner', function() {
+    expect(room.owner).to.equal("Bob");
   });
 });
