@@ -5,7 +5,11 @@ describe('Room', function() {
   var room;
 
   beforeEach(function() {
-    room = new Room("London", "This is my lovely room", "£230");
+    room = new Room("Double room in Central London", "London", "This is my lovely room", "£230");
+  });
+
+  it('adds a room title', function() {
+    expect(room.title).to.equal("Double room in Central London");
   });
 
   it('adds a room location', function() {

@@ -8,10 +8,16 @@ describe('User', function() {
   beforeEach(function() {
     user = new User();
     room = {
+      title: "Double room in Central London",
       location: "London",
       description: "This is my lovely room",
       price: "£230"
     }
+  });
+
+  it('adds a room title', function() {
+    user.addRoom(room);
+    expect(user.room.title).to.equal("Double room in Central London");
   });
 
   it('adds a room location', function() {
