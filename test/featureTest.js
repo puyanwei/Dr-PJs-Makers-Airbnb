@@ -3,8 +3,7 @@ assert = require('assert'),
 Browser = require('zombie'),
 browser = new Browser(),
 url = 'http://localhost:1337/';
-var redirectTo = require('chai').redirectTo;
-
+var Camo = require('camo');
 
 describe('App', function() {
 
@@ -68,10 +67,24 @@ describe('App', function() {
                 });
             });
 
-
         });
 
-        
+        it('should save a user to the database', function (done){
+
+            Camo.connect('mongodb://localhost/users').then(function(db) {
+                database = db;
+                return database.dropDatabase();
+            }).then(function() {}).then(done, done);
+
+
+
+            done();
+
+
+
+        })
+
+
 
     });
 
