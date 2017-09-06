@@ -13,52 +13,19 @@ describe('Booking a Room', function() {
 
         it('has a "Book This Room" button', function(done) {
             browser.visit(url + 'rooms', function() {
-                browser.assert.elements('form button[type="submit"][name="bookThisRoom"]');
+                browser.pressButton('form button[type="submit"][name="bookmyRoom"]');
+                expect(browser.assert.element('form button[type="submit"][name="bookmyRoom"]')).to.be.undefined;
                 done()
             })
         });
 
-        // it('');
-
-
-
-        it('works', function(done) {
-            browser.visit(url, function() {
-                expect(browser.text('body')).to.include('Welcome to Dr. PJs MakersBnB!');
-                browser.assert.element('form button[type="submit"][name="Visit Rooms"]');
-                browser.assert.element('form button[type="submit"][name="Sign Up"]');
-                done();
+        it('can change a room to booked', function() {
+            browser.visit(url + 'rooms', function() {
+                browser.pressButton('form button[type="submit"][name="bookmyRoom"]', function() {
+                    expect(browser.text('body')).to.include('form button[type="submit"][name="bookJohnnyroom"]');
+                    done()
+                })
             })
-        });
-
-
-        it('shows rooms when you click Visit Rooms', function(done) {
-            browser.visit(url, function() {
-                browser.pressButton('Visit Rooms', function() {
-                    console.log('Form submitted ok!');
-                    expect(browser.text('body')).to.include('London');
-                    expect(browser.text('body')).to.include('Makers Academy');
-                    expect(browser.text('body')).to.include('My lovely home');
-                    expect(browser.text('body')).to.include('£200');
-                    expect(browser.text('body')).to.include('Kay Lovelace');
-                    done();
-                });
-            });
-        });
-
-
-        it('shows sign up page when you click Sign Up', function(done) {
-            browser.visit(url, function() {
-                browser.pressButton('Sign Up', function() {
-                    console.log('Form submitted ok!');
-                    browser.assert.element('form input[type="text"][name="name"]');
-                    browser.assert.element('form input[type="text"][name="username"]');
-                    browser.assert.element('form input[type="text"][name="password"]');
-                    browser.assert.element('form input[type="text"][name="email"]');
-                    browser.assert.element('form button[type="submit"][name="submit"]');
-                    done();
-                });
-            });
         });
     });
 
