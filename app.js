@@ -30,15 +30,35 @@ app.set('views', path.join(__dirname, 'views'));
 
 var current_user = null;
 
+
 app.get('/', function(req, res) {
+    res.render('welcome', {            
+    });
+});
+
+app.get('/rooms', function(req, res) {
     db.rooms.find(function (err, docs) {
         console.log(docs);
-        res.render('index', {
+        res.render('rooms', {
             rooms: docs,
             current_user: current_user
         });
     });
 });
+
+app.post('/rooms', function(req, res) {
+    res.redirect('/rooms');
+});
+
+// app.get('/', function(req, res) {
+//     db.rooms.find(function (err, docs) {
+//         console.log(docs);
+//         res.render('index', {
+//             rooms: docs,
+//             current_user: current_user
+//         });
+//     });
+// });
 
 app.post('/rooms/add', function(req, res) {
 
@@ -60,10 +80,10 @@ app.post('/rooms/add', function(req, res) {
         });
     } else {
         var newRoom = new Room(req.body.owner,
-                                req.body.title,
-                                req.body.location,
-                                req.body.description,
-                                req.body.price);
+            req.body.title,
+            req.body.location,
+            req.body.description,
+            req.body.price);
         db.rooms.insert(newRoom);
         db.rooms.find(function (err, docs) {
             console.log(docs);

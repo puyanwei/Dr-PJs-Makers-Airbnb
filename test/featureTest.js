@@ -1,4 +1,5 @@
 var expect = require('chai').expect,
+    assert = require('assert'),
     Browser = require('zombie'),
     browser = new Browser(),
     url = 'http://localhost:1337/';
@@ -13,6 +14,8 @@ describe('App', function() {
         it('works', function(done) {
             browser.visit(url, function() {
                 expect(browser.text('body')).to.include('Welcome to Dr. PJs MakersBnB!');
+                browser.assert.element('form button[type="submit"][name="Visit Rooms"]');
+                browser.assert.element('form button[type="submit"][name="Sign up"]');
                 done();
             })
         });
