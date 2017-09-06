@@ -1,0 +1,16 @@
+<% include partials/header %>
+<h2>Rooms</h2>
+
+<ul>
+    <% rooms.forEach(function(room) { %>
+    <li>
+        <%= room.title %>,
+        <%= room.owner %>,
+        <%= room.location %>,
+        <%= room.description %>,
+        £<%= room.price %>
+    </li>
+    <% })%>
+</ul>
+
+<% include partials/footer %>

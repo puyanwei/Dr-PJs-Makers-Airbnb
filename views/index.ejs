@@ -43,7 +43,7 @@
 <h2>Rooms</h2>
 
 <ul>
-<% rooms.forEach(function(room) { %>
+    <% rooms.forEach(function(room) { %>
     <li>
         <%= room.title %>,
         <%= room.owner %>,
@@ -51,7 +51,7 @@
         <%= room.description %>,
         £<%= room.price %>
     </li>
-<% })%>
+    <% })%>
 </ul>
 
 <% include partials/footer %>

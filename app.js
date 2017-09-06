@@ -5,6 +5,10 @@ var expressValidator = require('express-validator');
 var Room = require('./models/room');
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['rooms']);
+var signup = require('./routes/signup');
+var index = require('./routes/index')
+var rooms = require('./routes/rooms');
+var users = require('./routes/users')
 
 var app = express();
 
@@ -28,51 +32,33 @@ app.use(expressValidator());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use('/', index)
+app.use('/signup', signup)
+app.use('/rooms', rooms)
+app.use('/users', users)
+
 var current_user = null;
 
-app.get('/', function(req, res) {
-    db.rooms.find(function (err, docs) {
-        console.log(docs);
-        res.render('index', {
-            rooms: docs,
-            current_user: current_user
-        });
-    });
-});
+// app.post('/signup', function(req, res) {
+//     res.redirect('/signup');
+// });
 
-app.post('/rooms/add', function(req, res) {
+// app.get('/signup', function(req, res) {
+//     res.render('signup', {            
+//     });
+// });
 
-    req.checkBody('title', 'Title is required').notEmpty();
-    req.checkBody('location' , 'Location must be filled in').notEmpty();
-    req.checkBody('description', 'Description must be filled in').notEmpty();
-    req.checkBody('price'       , 'Price must be filled in').notEmpty();
-    req.checkBody('owner'       , 'Owner must be filled in').notEmpty();
+// app.get('/', function(req, res) {
+//     db.rooms.find(function (err, docs) {
+//         console.log(docs);
+//         res.render('index', {
+//             rooms: docs,
+//             current_user: current_user
+//         });
+//     });
+// });
 
-    var errors = req.validationErrors();
 
-    if (errors) {
-        db.rooms.find(function (err, docs) {
-            console.log(docs);
-            res.render('index', {
-                rooms: docs,
-                errors: errors
-            });
-        });
-    } else {
-        var newRoom = new Room(req.body.owner,
-                                req.body.title,
-                                req.body.location,
-                                req.body.description,
-                                req.body.price);
-        db.rooms.insert(newRoom);
-        db.rooms.find(function (err, docs) {
-            console.log(docs);
-            res.render('index', {
-                rooms: docs
-            });
-        });
-    }
-});
 
 
 var server = app.listen(1337, function() {
