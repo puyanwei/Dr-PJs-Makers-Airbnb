@@ -9,6 +9,9 @@
         <%= room.location %>,
         <%= room.description %>,
         £<%= room.price %>
+        <form method="POST" action="/rooms">
+            <button type="submit" name="bookThisRoom">Book This Room</button>
+        </form>
     </li>
     <% })%>
 </ul>
