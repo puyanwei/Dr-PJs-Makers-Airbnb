@@ -50,6 +50,15 @@ app.post('/rooms', function(req, res) {
     res.redirect('/rooms');
 });
 
+app.post('/signup', function(req, res) {
+    res.redirect('/signup');
+});
+
+app.get('/signup', function(req, res) {
+    res.render('signup', {            
+    });
+});
+
 // app.get('/', function(req, res) {
 //     db.rooms.find(function (err, docs) {
 //         console.log(docs);
