@@ -6,6 +6,7 @@ var express = require('express');
 var router = express.Router();
 var current_user = null;
 
+
 var usersDB;
 db.users.find(function (err,docs) {
   usersDB = docs;
@@ -45,6 +46,20 @@ router.post('/', function(req, res, next) {
       });
   });
 });
+
+// router.post('/book', function(req, res) {
+//     var room = db.rooms.find({title : req.body.roomName});
+//     console.log(req.body.roomName);
+//     // console.log(room);
+//     console.log(room.title);
+//     db.rooms.find(function (err, docs) {
+//         // console.log(docs);
+//         res.render('book', {
+//             room: room,
+//             current_user: current_user
+//         });
+//     });
+// });
 
 router.post('/confirm', function(req, res) {
 
