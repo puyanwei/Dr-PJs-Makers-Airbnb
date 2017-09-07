@@ -56,7 +56,7 @@ describe('App', function() {
         var database = null;
 
         before(function(done){
-            Camo.connect('mongodb://localhost/makersbnb').then(function(db) {
+            Camo.connect('mongodb://localhost/test').then(function(db) {
                 database = db;
                 return database.dropDatabase();
             }).then(function() {}).then(done, done);
