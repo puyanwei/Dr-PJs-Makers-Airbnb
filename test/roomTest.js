@@ -27,4 +27,13 @@ describe('Room', function() {
   it('adds an owner', function() {
     expect(room.owner).to.equal("Bob");
   });
+
+  it('is not booked by default', function() {
+    expect(room.isBooked()).to.equal(false)
+    });
+
+  it('can be booked', function() {
+    room.book()
+    expect(room.isBooked()).to.equal(true)
+  })
 });

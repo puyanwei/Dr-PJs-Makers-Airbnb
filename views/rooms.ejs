@@ -1,16 +1,35 @@
 <% include partials/header %>
-<h2>Rooms</h2>
+
+<link rel="stylesheet" href="../style.css">
+
+
+<h2 class="blueClass">Rooms</h2>
 
 <ul>
     <% rooms.forEach(function(room) { %>
-    <li>
+    <li class="blueClass">
         <%= room.title %>,
         <%= room.owner %>,
         <%= room.location %>,
         <%= room.description %>,
         £<%= room.price %>
+        <div id="Book<%= room.title %>" >
+        <% if (room.booked === false) { %>
+        <form method="POST" action="/rooms/confirm">
+            <button type="submit" name="roomName" value="<%= room.title %>">Book This Room</button>
+        </form>
+        <% } else { %>
+            - This room has been booked
+        <% } %>
+        </div>
     </li>
+    <br>
     <% })%>
 </ul>
+
+<form method="POST" action="/rooms/add">
+    <button type="submit" name="newRoom">New room</button>
+</form>
+
 
 <% include partials/footer %>

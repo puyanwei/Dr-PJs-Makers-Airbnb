@@ -24,7 +24,6 @@ describe('App', function() {
         it('shows rooms when you click Visit Rooms', function(done) {
             browser.visit(url, function() {
                 browser.pressButton('Visit Rooms', function() {
-                    console.log('Form submitted ok!');
                     expect(browser.text('body')).to.include('London');
                     expect(browser.text('body')).to.include('Makers Academy');
                     expect(browser.text('body')).to.include('My lovely home');
@@ -39,7 +38,6 @@ describe('App', function() {
         it('shows sign up page when you click Sign Up', function(done) {
             browser.visit(url, function() {
                 browser.pressButton('Sign Up', function() {
-                    console.log('Form submitted ok!');
                     browser.assert.element('form input[type="text"][name="name"]');
                     browser.assert.element('form input[type="text"][name="username"]');
                     browser.assert.element('form input[type="text"][name="password"]');
