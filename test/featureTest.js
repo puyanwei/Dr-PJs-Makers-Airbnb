@@ -51,20 +51,20 @@ describe('App', function() {
 
     describe('/signup', function(){
 
-        var database = null;
-
-        before(function(done){
-            Camo.connect('mongodb://localhost/test').then(function(db) {
-                database = db;
-                return database.dropDatabase();
-            }).then(function() {}).then(done, done);
-        })
+        // var database = null;
+        //
+        // before(function(done){
+        //     Camo.connect('mongodb://localhost/test').then(function(db) {
+        //         database = db;
+        //         return database.dropDatabase();
+        //     }).then(function() {}).then(done, done);
+        // })
 
         // afterEach(function(done){
         //     database.dropDatabase().then(function(){}).then(done, done);
         // });
 
-        it('creates a new user when you sign up', function(done){
+        it('goes to the room page after signing up', function(done){
             browser.visit(url + 'signup', function() {
                 browser.fill('input[name=name]', 'Kay Lovelace')
                 .fill('input[name=username]', 'kaylove')
@@ -75,6 +75,22 @@ describe('App', function() {
                     done();
                 });
             });
+
+        });
+
+        it('show the current user name', function(done){
+            browser.visit(url + 'signup', function() {
+                browser.fill('input[name=name]', 'Kay Lovelace')
+                .fill('input[name=username]', 'kaylove')
+                .fill('input[name=password]', 'ilovebluejuly')
+                .fill('input[name=email]', 'klovelace@email.com')
+                .pressButton('Submit', function() {
+                  expect(browser.text('body')).to.include('Currently logged in as: Kay Lovelace');
+                  done();
+                });
+            });
+
+
 
         });
 
