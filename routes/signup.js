@@ -3,6 +3,7 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['users']);
 var User = require('../models/user');
+var Room = require('../models/room');
 
 console.log('signup')
 
@@ -18,10 +19,10 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 
-    req.checkBody('name', 'Title is required').notEmpty();
-    req.checkBody('username' , 'Location must be filled in').notEmpty();
-    req.checkBody('password', 'Description must be filled in').notEmpty();
-    req.checkBody('email'       , 'Price must be filled in').notEmpty();
+    req.checkBody('name'     , 'Name is required').notEmpty();
+    req.checkBody('username' , 'Username must be filled in').notEmpty();
+    req.checkBody('password' , 'Password must be filled in').notEmpty();
+    req.checkBody('email'    , 'Email must be filled in').notEmpty();
 
     var errors = req.validationErrors();
 

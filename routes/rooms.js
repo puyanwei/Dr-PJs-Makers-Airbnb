@@ -1,5 +1,5 @@
 var mongojs = require('mongojs');
-var db = mongojs('makersbnb', ['rooms']);
+var db = mongojs('makersbnb', ['rooms' ,'users']);
 var Room = require('../models/room');
 
 var express = require('express');
@@ -7,10 +7,13 @@ var router = express.Router();
 var current_user = null;
 
 router.get('/', function(req, res) {
-    db.rooms.find(function (err, docs) {
+
+
+      db.rooms.find(function (err, docs) {
         // console.log(docs);
         res.render('rooms', {
             rooms: docs,
+            users: something
             current_user: current_user
         });
     });
