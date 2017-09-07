@@ -1,5 +1,6 @@
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['rooms']);
+var Room = require('../models/room');
 
 var express = require('express');
 var router = express.Router();
@@ -19,6 +20,10 @@ router.post('/', function(req, res) {
     res.redirect('/rooms');
 });
 
+router.get('/add', function(req, res){
+    res.render('add')
+})
+
 router.post('/add', function(req, res) {
 
     req.checkBody('title', 'Title is required').notEmpty();
@@ -32,8 +37,7 @@ router.post('/add', function(req, res) {
     if (errors) {
         db.rooms.find(function (err, docs) {
             console.log(docs);
-            res.render('index', {
-                rooms: docs,
+            res.render('add', {
                 errors: errors
             });
         });
@@ -46,11 +50,10 @@ router.post('/add', function(req, res) {
         db.rooms.insert(newRoom);
         db.rooms.find(function (err, docs) {
             console.log(docs);
-            res.render('index', {
-                rooms: docs
-            });
+            res.redirect('/rooms')
         });
     }
+
 });
 
 module.exports = router;

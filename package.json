@@ -17,6 +17,7 @@
     "express-validator": "^4.1.1",
     "mocha": "^3.5.0",
     "mongojs": "^2.4.1",
+    "mongoose": "^4.11.10",
     "nodemon": "^1.12.0",
     "package.json": "^2.0.1",
     "zombie": "^5.0.7"
