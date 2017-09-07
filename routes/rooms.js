@@ -7,7 +7,7 @@ var current_user = null;
 
 router.get('/', function(req, res) {
     db.rooms.find(function (err, docs) {
-        console.log(docs);
+        // console.log(docs);
         res.render('rooms', {
             rooms: docs,
             current_user: current_user
@@ -18,6 +18,15 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
     res.redirect('/rooms');
 });
+
+router.post('/confirm', function(req, res) {
+
+    console.log(req.body.roomName);
+    db.rooms.update({title : req.body.roomName}, {$set : {booked : true}});
+    // console.log(db.rooms.find({title : req.body.roomName}));
+
+    res.redirect('/rooms');
+})
 
 router.post('/add', function(req, res) {
 
@@ -31,7 +40,7 @@ router.post('/add', function(req, res) {
 
     if (errors) {
         db.rooms.find(function (err, docs) {
-            console.log(docs);
+            // console.log(docs);
             res.render('index', {
                 rooms: docs,
                 errors: errors
@@ -45,7 +54,7 @@ router.post('/add', function(req, res) {
             req.body.price);
         db.rooms.insert(newRoom);
         db.rooms.find(function (err, docs) {
-            console.log(docs);
+            // console.log(docs);
             res.render('index', {
                 rooms: docs
             });

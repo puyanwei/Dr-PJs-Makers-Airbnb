@@ -9,13 +9,23 @@
         <%= room.location %>,
         <%= room.description %>,
         £<%= room.price %>
+        <div id="Book<%= room.title %>" >
         <% if (room.booked === false) { %>
-        <form method="POST" action="/rooms">
-            <button type="submit" name="book<%= room.title %>">Book This Room</button>
+        <form method="POST" action="/rooms/confirm">
+            <button type="submit" name="roomName" value="<%= room.title %>">Book This Room</button>
         </form>
+        <% } else { %>
+            - This room has been booked
         <% } %>
+        </div>
     </li>
+    <br>
     <% })%>
 </ul>
+
+<form method="POST" action="/rooms/add">
+    <button type="submit" name="newRoom">New room</button>
+</form>
+
 
 <% include partials/footer %>
