@@ -53,7 +53,18 @@ describe('App', function() {
 
     describe('/signup', function(){
 
+        var database = null;
 
+        before(function(done){
+            Camo.connect('mongodb://localhost/makersbnb').then(function(db) {
+                database = db;
+                return database.dropDatabase();
+            }).then(function() {}).then(done, done);
+        })
+
+        // afterEach(function(done){
+        //     database.dropDatabase().then(function(){}).then(done, done);
+        // });
 
         it('creates a new user when you sign up', function(done){
             browser.visit(url + 'signup', function() {
@@ -69,23 +80,47 @@ describe('App', function() {
 
         });
 
-        it('should save a user to the database', function (done){
+        // it('can add user into the database', function(done) {
+        // browser.visit(url + 'signup', function() {
+        //     browser.fill('input[name=title]', 'Makers Academy')
+        //     .fill('input[name=location]', 'London')
+        //     .fill('input[name=description]', 'My lovely home')
+        //     .fill('input[name=price]', '200')
+        //     .fill('input[name=owner]', 'Kay Lovelace')
+        //     .pressButton('Submit', function() {
+        //         console.log('Form submitted ok!');
+        //         expect(browser.text('body')).to.include('London');
+        //         expect(browser.text('body')).to.include('Makers Academy');
+        //         expect(browser.text('body')).to.include('My lovely home');
+        //         expect(browser.text('body')).to.include('£200');
+        //         expect(browser.text('body')).to.include('Kay Lovelace');
+        //         done();
+        //     });
+        // });
+        // });
 
-            Camo.connect('mongodb://localhost/users').then(function(db) {
-                database = db;
-                return database.dropDatabase();
-            }).then(function() {}).then(done, done);
 
 
 
-            done();
 
 
 
-        })
+
+
+        // it('should save a user to the database', function (done){
+
+        //     Camo.connect('mongodb://localhost/users').then(function(db) {
+        //         database = db;
+        //         return database.dropDatabase();
+        //     }).then(function() {}).then(done, done);
 
 
 
+        //     done();
+
+
+
+        // })
     });
 
 

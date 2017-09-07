@@ -5,10 +5,11 @@ var expressValidator = require('express-validator');
 var Room = require('./models/room');
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['rooms']);
+var dbUsers = mongojs('makersbnb', ['users']);
 var signup = require('./routes/signup');
-var index = require('./routes/index')
+var index = require('./routes/index');
 var rooms = require('./routes/rooms');
-var users = require('./routes/users')
+var users = require('./routes/users');
 
 var app = express();
 
