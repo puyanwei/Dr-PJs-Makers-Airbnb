@@ -9,3 +9,12 @@
 .high-usage {
     color: red;
 }
+
+.blueClass {
+    color: red;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif
+}
+
+body {
+    background-color: #2f5659;
+}

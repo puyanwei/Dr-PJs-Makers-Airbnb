@@ -1,9 +1,13 @@
 <% include partials/header %>
-<h2>Rooms</h2>
+
+<link rel="stylesheet" href="../style.css">
+
+
+<h2 class="blueClass">Rooms</h2>
 
 <ul>
     <% rooms.forEach(function(room) { %>
-    <li>
+    <li class="blueClass">
         <%= room.title %>,
         <%= room.owner %>,
         <%= room.location %>,

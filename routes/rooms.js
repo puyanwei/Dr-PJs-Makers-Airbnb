@@ -26,7 +26,7 @@ router.post('/confirm', function(req, res) {
     // console.log(db.rooms.find({title : req.body.roomName}));
 
     res.redirect('/rooms');
-})
+});
 
 router.post('/add', function(req, res) {
 
