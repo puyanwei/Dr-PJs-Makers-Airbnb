@@ -1,26 +1,49 @@
 var mongojs = require('mongojs');
-var db = mongojs('makersbnb', ['rooms' ,'users']);
+var db = mongojs('makersbnb', ['rooms','users']);
 var Room = require('../models/room');
 
 var express = require('express');
 var router = express.Router();
 var current_user = null;
 
-router.get('/', function(req, res) {
+var usersDB;
+db.users.find(function (err,docs) {
+  usersDB = docs;
+});
 
+router.get('/', function(req, res, next) {
 
       db.rooms.find(function (err, docs) {
+        db.users.find(function (err,docs) {
+          usersDB = docs;
+          console.log(usersDB)
+          next()
+        });
         // console.log(docs);
         res.render('rooms', {
             rooms: docs,
-            users: something
+            users: usersDB,
             current_user: current_user
         });
     });
 });
 
-router.post('/', function(req, res) {
-    res.redirect('/rooms');
+router.post('/', function(req, res, next) {
+
+
+    db.rooms.find(function (err, docs) {
+      db.users.find(function (err,docs) {
+        usersDB = docs;
+        console.log(usersDB)
+        next()
+      });
+      // console.log(docs);
+      res.render('rooms', {
+          rooms: docs,
+          users: usersDB,
+          current_user: current_user
+      });
+  });
 });
 
 router.post('/confirm', function(req, res) {
@@ -59,9 +82,7 @@ router.post('/add', function(req, res) {
             req.body.description,
             req.body.price);
         db.rooms.insert(newRoom);
-        db.rooms.find(function (err, docs) {
-            res.redirect('/rooms')
-        });
+        res.redirect('/rooms')
     }
 
 });
