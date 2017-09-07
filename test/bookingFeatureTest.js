@@ -35,6 +35,22 @@ describe('Booking a Room', function() {
             })
         });
 
+
+        // it('takes you to a page showing room details and availability', function(done) {
+        //     browser.visit(url + 'rooms', function() {
+        //         browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
+        //             expect(browser.location.pathname).to.equal('/rooms/book');
+        //             expect(browser.text('body')).to.include('myRoom');
+        //             expect(browser.text('body')).to.include('Stephen');
+        //             expect(browser.text('body')).to.include('Bethnal Green');
+        //             expect(browser.text('body')).to.include('Not worth it');
+        //             browser.assert.element('form button[type="submit"][name="Book"]');
+        //             done()
+        //         })
+        //     })
+        // });
+
+
         it('can change a room to booked', function(done) {
             browser.visit(url + 'rooms', function() {
                 browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
@@ -43,6 +59,10 @@ describe('Booking a Room', function() {
                 })
             })
         });
+
+
+
+
     });
 
     describe('/signup', function(){

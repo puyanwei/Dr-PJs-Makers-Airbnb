@@ -1,16 +1,23 @@
 var mongojs = require('mongojs');
-var db = mongojs('makersbnb', ['rooms']);
+var db = mongojs('makersbnb', ['rooms', 'testcollection']);
 var Room = require('../models/room');
 
 var express = require('express');
 var router = express.Router();
 var current_user = null;
 
+
 router.get('/', function(req, res) {
+    var teststuff;
+    db.testcollection.find(function (err,docs) {
+        teststuff = docs
+    });
+    console.log('finished!');
     db.rooms.find(function (err, docs) {
         // console.log(docs);
         res.render('rooms', {
             rooms: docs,
+            testStuff: teststuff,
             current_user: current_user
         });
     });
@@ -19,6 +26,20 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
     res.redirect('/rooms');
 });
+
+// router.post('/book', function(req, res) {
+//     var room = db.rooms.find({title : req.body.roomName});
+//     console.log(req.body.roomName);
+//     // console.log(room);
+//     console.log(room.title);
+//     db.rooms.find(function (err, docs) {
+//         // console.log(docs);
+//         res.render('book', {
+//             room: room,
+//             current_user: current_user
+//         });
+//     });
+// });
 
 router.post('/confirm', function(req, res) {
 
