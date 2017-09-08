@@ -8,4 +8,12 @@
     £<%= room.price %>
 </li>
 
+<form method="POST" action="/rooms/confirm">
+    <button type="submit" name="bookRoomName" value="<%= room.title %>">Book This Room</button>
+</form>
+
+<form method="GET" action="/rooms">
+    <button type="submit" name="viewRooms">View Rooms</button>
+</form>
+
 <% include partials/footer %>

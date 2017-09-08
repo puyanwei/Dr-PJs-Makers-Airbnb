@@ -15,7 +15,7 @@
         £<%= room.price %>
         <div id="Book<%= room.title %>" >
         <% if (room.booked === false) { %>
-        <form method="POST" action="/rooms/confirm">
+        <form method="POST" action="/rooms/book">
             <button type="submit" name="roomName" value="<%= room.title %>">Book This Room</button>
         </form>
         <% } else { %>

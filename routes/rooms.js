@@ -34,6 +34,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
+    sess = req.session;
 
     db.rooms.find(function (err, docs) {
       db.users.find(function (err,docs) {
@@ -49,24 +50,30 @@ router.post('/', function(req, res, next) {
   });
 });
 
-// router.post('/book', function(req, res) {
-//     var room = db.rooms.find({title : req.body.roomName});
-//     console.log(req.body.roomName);
-//     // console.log(room);
-//     console.log(room.title);
-//     db.rooms.find(function (err, docs) {
-//         // console.log(docs);
-//         res.render('book', {
-//             room: room,
-//             current_user: current_user
-//         });
-//     });
-// });
+router.post('/book', function(req, res) {
+  sess = req.session;
+
+  var roomname1 = req.body.roomName;
+    var room;
+    db.rooms.find(function (err, docs) {
+      docs.forEach(function(thisRoom) {
+        if (thisRoom.title === req.body.roomName) {
+          room = thisRoom
+        }
+      })
+        res.render('book', {
+            room: room,
+            currentUser: req.currentUser
+        });
+    });
+
+
+});
 
 router.post('/confirm', function(req, res) {
 
     console.log(req.body.roomName);
-    db.rooms.update({title : req.body.roomName}, {$set : {booked : true}});
+    db.rooms.update({title : req.body.bookRoomName}, {$set : {booked : true}});
     // console.log(db.rooms.find({title : req.body.roomName}));
 
     res.redirect('/rooms');
