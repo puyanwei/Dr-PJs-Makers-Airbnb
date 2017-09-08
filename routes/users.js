@@ -38,17 +38,16 @@ router.post('/confirm', function(req, res) {
         errors = []
     }
 
-    console.log(errors);
+    sess.tempUser = undefined;
 
-
-    sess.currentUser = undefined;
     db.users.find(function (err, docs) {
         docs.forEach(function (user) {
             if ((user.username === req.body.username && user.password === req.body.password)) {
-                sess.currentUser = user;
+                sess.tempUser = user;
             }
         });
-        if (sess.currentUser !== undefined) {
+        if (sess.tempUser !== undefined) {
+            sess.currentUser = sess.tempUser;
             res.redirect('/rooms')
         } else {
             var detailsError = {msg : 'No user found with those details'};
