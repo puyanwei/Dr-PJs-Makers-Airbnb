@@ -51,18 +51,6 @@ describe('App', function() {
 
     describe('/signup', function(){
 
-        // var database = null;
-        //
-        // before(function(done){
-        //     Camo.connect('mongodb://localhost/test').then(function(db) {
-        //         database = db;
-        //         return database.dropDatabase();
-        //     }).then(function() {}).then(done, done);
-        // })
-
-        // afterEach(function(done){
-        //     database.dropDatabase().then(function(){}).then(done, done);
-        // });
 
         it('goes to the room page after signing up', function(done){
             browser.visit(url + 'signup', function() {
@@ -89,9 +77,6 @@ describe('App', function() {
                   done();
                 });
             });
-
-
-
         });
 
         // it('can add user into the database', function(done) {
