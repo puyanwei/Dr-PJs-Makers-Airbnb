@@ -39,7 +39,8 @@ router.post('/', function(req, res) {
             req.body.password,
             req.body.email);
         db.users.insert(newUser);
-        console.log(newUser)
+        console.log(newUser);
+        currentUser = newUser
         db.users.find(function (err, docs) {
             res.redirect('/rooms')
         });

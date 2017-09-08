@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
       db.rooms.find(function (err, docs) {
         db.users.find(function (err,docs) {
           usersDB = docs;
-          console.log(usersDB)
+          console.log(usersDB);
           next()
         });
         // console.log(docs);
