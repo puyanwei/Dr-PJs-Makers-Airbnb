@@ -10,4 +10,8 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/signin', function(req, res) {
+    res.redirect('/users/signin')
+});
+
 module.exports = router;

@@ -3,29 +3,31 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['users']);
 var User = require('../models/user');
-var Room = require('../models/room');
 var session = require('express-session');
-
-var currentUser = undefined;
-
-
-
-
-// router.post('/', function(req, res) {
-//     res.redirect('/signup');
-// });
+var signUpError = undefined;
 
 var sess;
 
-router.get('/', function(req, res) {
-    res.render('signup', {
-        currentUser : currentUser
-    });
+router.get('/', function(req, res){
+    sess = req.session;
+
+    console.log(sess.currentUser + 'current user');
+
+    if (sess.currentUser === undefined) {
+        res.render('signup', {
+            currentUser: sess.currentUser
+        });
+    } else {
+            res.send('Already signed in')
+    }
 });
+
 
 
 router.post('/', function(req, res) {
     sess = req.session;
+    signUpError = undefined;
+
 
     req.checkBody('name'     , 'Name is required').notEmpty();
     req.checkBody('username' , 'Username must be filled in').notEmpty();
@@ -38,7 +40,8 @@ router.post('/', function(req, res) {
         db.users.find(function (err, docs) {
             res.render('signup', {
                 errors: errors,
-                currentUser: currentUser
+                currentUser: sess.currentUser,
+                signUpError: signUpError
             });
         });
     } else {

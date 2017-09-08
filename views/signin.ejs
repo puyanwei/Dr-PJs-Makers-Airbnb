@@ -10,22 +10,16 @@
 </ul>
 <% } %>
 
-<h2>Sign Up</h2>
-<form method="POST" action="/signup">
-    <label>Name</label><br>
-    <input type="text" name="name">
-    <br>
+<h2>Sign In</h2>
+<form method="POST" action="/users/confirm">
     <label>Username</label><br>
     <input type="text" name="username">
     <br>
     <label>Password</label><br>
     <input type="password" name="password">
     <br>
-    <label>Email</label><br>
-    <input type="text" name="email">
     <br>
-    <br>
-    <button type="submit" name="sign up">Sign up</button>
+    <button type="submit" name="sign up">Sign in</button>
 </form>
 
 <form method="POST" action="/rooms">

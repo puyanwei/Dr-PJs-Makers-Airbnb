@@ -4,6 +4,8 @@ Browser = require('zombie'),
 browser = new Browser(),
 url = 'http://localhost:1337/';
 var Camo = require('camo');
+var session = require('express-session');
+
 
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['rooms', 'users']);
@@ -46,7 +48,7 @@ describe('App', function() {
                     browser.assert.element('form input[type="text"][name="username"]');
                     browser.assert.element('form input[type="text"][name="password"]');
                     browser.assert.element('form input[type="text"][name="email"]');
-                    browser.assert.element('form button[type="submit"][name="submit"]');
+                    browser.assert.element('form button[type="submit"][name="sign up"]');
                     done();
                 });
             });
@@ -57,13 +59,12 @@ describe('App', function() {
 
         beforeEach(function () {
             db.users.remove({});
-            db.users.insert({'name' : 'test', username : 'testuser', password : 'testpass', email: 'test@email.com'})
-
+            db.users.insert({'name' : 'Stephen', username : 'sgeller', password : 'password123', email: 'test@email.com'})
         });
 
         afterEach(function () {
             db.users.remove({});
-            db.users.insert({'name' : 'test', username : 'testuser', password : 'testpass', email: 'test@email.com'})
+            db.users.insert({'name' : 'Stephen', username : 'sgeller', password : 'password123', email: 'test@email.com'})
         });
 
 
@@ -80,35 +81,16 @@ describe('App', function() {
             });
         });
 
-        it('show the current user name when signed up', function (done) {
-            browser.visit(url + 'signup', function () {
-                browser.fill('input[name=name]', 'Kay Lovelace')
-                    .fill('input[name=username]', 'kaylove')
-                    .fill('input[name=password]', 'ilovebluejuly')
-                    .fill('input[name=email]', 'klovelace@email.com')
-                    .pressButton('Sign up', function () {
-                        expect(browser.text('body')).to.include('Currently logged in as: Kay Lovelace');
-                        done();
-                    });
-            });
-        });
-
-        it('can sign out', function (done) {
-            browser.visit(url + 'signup', function () {
-                browser.fill('input[name=name]', 'Kay Lovelace')
-                    .fill('input[name=username]', 'kaylove')
-                    .fill('input[name=password]', 'ilovebluejuly')
-                    .fill('input[name=email]', 'klovelace@email.com')
-                    .pressButton('Sign up', function () {
-                        browser.pressButton('Sign out', function () {
-                            expect(browser.text('body')).to.not.include('Currently logged in as: Kay Lovelace');
-                            done();
-                        })
+        it('can sign in if user is signed up', function(done) {
+            browser.visit(url + 'users/signin', function() {
+                browser.fill('input[name=username]', 'sgeller')
+                    .fill('input[name=password]', 'password123');
+                browser.pressButton('Sign in', function () {
+                    expect(browser.text('body')).to.include('Currently logged in as: Stephen');
+                    done();
                 });
             });
-        });
-
-
+        })
     });
 });
 

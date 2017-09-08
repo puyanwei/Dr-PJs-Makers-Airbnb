@@ -1,17 +1,9 @@
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['rooms','users']);
 var Room = require('../models/room');
-
 var express = require('express');
 var router = express.Router();
-var currentUser = null;
 var session = require('express-session');
-
-
-var usersDB;
-db.users.find(function (err,docs) {
-  usersDB = docs;
-});
 
 var sess;
 
@@ -19,12 +11,6 @@ router.get('/', function(req, res, next) {
     sess = req.session;
 
       db.rooms.find(function (err, docs) {
-        db.users.find(function (err,docs) {
-          usersDB = docs;
-          console.log(usersDB);
-          next()
-        });
-        // console.log(docs);
         res.render('rooms', {
             rooms: docs,
             currentUser: sess.currentUser
@@ -33,20 +19,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-
+    sess = req.session;
 
     db.rooms.find(function (err, docs) {
-      db.users.find(function (err,docs) {
-        usersDB = docs;
-        console.log(usersDB);
-        next()
-      });
       // console.log(docs);
       res.render('rooms', {
           rooms: docs,
           currentUser: sess.currentUser
       });
-  });
+    });
 });
 
 // router.post('/book', function(req, res) {
@@ -77,6 +58,7 @@ router.get('/add', function(req, res){
 })
 
 router.post('/add', function(req, res) {
+    sess = req.session;
 
     req.checkBody('title', 'Title is required').notEmpty();
     req.checkBody('location' , 'Location must be filled in').notEmpty();

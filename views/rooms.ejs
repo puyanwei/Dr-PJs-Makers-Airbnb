@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="../style.css">
 
 
+
+
+
 <h2 class="blueClass">Rooms</h2>
 
 <ul>
@@ -32,12 +35,13 @@
 </form>
 
 <% if (currentUser != undefined) { %>
-<form method="POST" action="/signout">
-    <button type="submit" name="signout">Sign out</button>
+<form method="POST" action="/users/signout">
+    <button type="submit" name="signOut" id="signOut">Sign out</button>
+
 </form>
 <% } else {%>
-<form method="POST" action="/signup">
-    <button type="submit" name="signup">Sign up</button>
+<form method="get" action="/signup">
+    <button type="submit" name="signUp">Sign up</button>
 </form>
 <% } %>
 
