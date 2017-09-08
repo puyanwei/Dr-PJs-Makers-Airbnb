@@ -18,27 +18,27 @@ describe('Booking a Room', function() {
     describe('/rooms', function() {
 
         beforeEach(function() {
-            db.rooms.insert({"title" : "myRoom", "location" : "Bethnal Green", "description" : "Not worth it", "price" : "200", "owner" : "sgeller", "booked" : false });
+            db.rooms.insert({"title" : "mySpecialRoom", "location" : "Bethnal Green", "description" : "Not worth it", "price" : "200", "owner" : "sgeller", "booked" : false });
 
         });
 
         afterEach(function() {
-            db.rooms.remove({"title" : "myRoom"});
+            db.rooms.remove({"title" : "mySpecialRoom"});
         });
 
 
         it('has a "Book This Room" button', function(done) {
             browser.visit(url + 'rooms', function() {
-                browser.assert.element('#BookmyRoom');
+                browser.assert.element('#BookmySpecialRoom');
                 done()
             })
         });
 
         it('takes you to a page showing room details and availability', function(done) {
             browser.visit(url + 'rooms', function() {
-                browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
+                browser.pressButton('form button[type="submit"][value="mySpecialRoom"]', function() {
                     expect(browser.location.pathname).to.equal('/rooms/book');
-                    expect(browser.text('body')).to.include('myRoom');
+                    expect(browser.text('body')).to.include('mySpecialRoom');
                     expect(browser.text('body')).to.include('sgeller');
                     expect(browser.text('body')).to.include('Bethnal Green');
                     expect(browser.text('body')).to.include('Not worth it');
@@ -51,10 +51,10 @@ describe('Booking a Room', function() {
 
         it('shows that a room has been booked', function(done) {
           browser.visit(url + 'rooms', function() {
-            browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
+            browser.pressButton('form button[type="submit"][value="mySpecialRoom"]', function() {
               browser.pressButton('form button[type="submit"][name="bookRoomName"]', function() {
                 expect(browser.location.pathname).to.equal('/rooms');
-                assert.equal(browser.text('#BookmyRoom'), '- This room has been booked');
+                assert.equal(browser.text('#BookmySpecialRoom'), '- This room has been booked');
                 done()
               })
             })
@@ -63,10 +63,10 @@ describe('Booking a Room', function() {
 
         it('takes you back to the rooms page and ', function(done) {
           browser.visit(url + 'rooms', function() {
-            browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
+            browser.pressButton('form button[type="submit"][value="mySpecialRoom"]', function() {
               browser.pressButton('form button[type="submit"][name="viewRooms"]', function() {
                 expect(browser.location.pathname).to.equal('/rooms');
-                browser.assert.element('#BookmyRoom');
+                browser.assert.element('#BookmySpecialRoom');
                 done()
               })
             })
@@ -75,8 +75,8 @@ describe('Booking a Room', function() {
 
         // it('can change a room to booked', function(done) {
         //     browser.visit(url + 'rooms', function() {
-        //         browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
-        //             assert.equal(browser.text('#BookmyRoom'), '- This room has been booked');
+        //         browser.pressButton('form button[type="submit"][value="mySpecialRoom"]', function() {
+        //             assert.equal(browser.text('#BookmySpecialRoom'), '- This room has been booked');
         //             done()
         //         })
         //     })
