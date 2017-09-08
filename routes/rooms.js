@@ -34,6 +34,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
+    sess = req.session;
 
     db.rooms.find(function (err, docs) {
       db.users.find(function (err,docs) {
@@ -72,7 +73,7 @@ router.post('/book', function(req, res) {
 router.post('/confirm', function(req, res) {
 
     console.log(req.body.roomName);
-    db.rooms.update({title : req.body.roomName}, {$set : {booked : true}});
+    db.rooms.update({title : req.body.bookRoomName}, {$set : {booked : true}});
     // console.log(db.rooms.find({title : req.body.roomName}));
 
     res.redirect('/rooms');

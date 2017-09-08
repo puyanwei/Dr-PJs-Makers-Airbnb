@@ -39,10 +39,10 @@ describe('Booking a Room', function() {
                 browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
                     expect(browser.location.pathname).to.equal('/rooms/book');
                     expect(browser.text('body')).to.include('myRoom');
-                    expect(browser.text('body')).to.include('Stephen');
+                    expect(browser.text('body')).to.include('sgeller');
                     expect(browser.text('body')).to.include('Bethnal Green');
                     expect(browser.text('body')).to.include('Not worth it');
-                    browser.assert.element('form button[type="submit"][name="Book"]');
+                    browser.assert.element('form button[type="submit"][name="bookRoomName"]');
                     done()
                 })
             })
