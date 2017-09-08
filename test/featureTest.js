@@ -46,7 +46,7 @@ describe('App', function() {
                 browser.pressButton('Sign Up', function() {
                     browser.assert.element('form input[type="text"][name="name"]');
                     browser.assert.element('form input[type="text"][name="username"]');
-                    browser.assert.element('form input[type="text"][name="password"]');
+                    browser.assert.element('form input[type="password"][name="password"]');
                     browser.assert.element('form input[type="text"][name="email"]');
                     browser.assert.element('form button[type="submit"][name="sign up"]');
                     done();
