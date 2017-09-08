@@ -31,9 +31,15 @@
     <button type="submit" name="newRoom">New room</button>
 </form>
 
+<% if (currentUser != undefined) { %>
+<form method="POST" action="/signout">
+    <button type="submit" name="signout">Sign out</button>
+</form>
+<% } else {%>
 <form method="POST" action="/signup">
     <button type="submit" name="signup">Sign up</button>
 </form>
+<% } %>
 
 
 <% include partials/footer %>

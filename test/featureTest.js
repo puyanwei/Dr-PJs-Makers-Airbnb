@@ -53,7 +53,7 @@ describe('App', function() {
         });
     });
 
-    describe('/signup', function() {
+    describe('users', function() {
 
         beforeEach(function () {
             db.users.remove({});
@@ -73,23 +73,38 @@ describe('App', function() {
                     .fill('input[name=username]', 'kaylove')
                     .fill('input[name=password]', 'ilovebluejuly')
                     .fill('input[name=email]', 'klovelace@email.com')
-                    .pressButton('Submit', function () {
+                    .pressButton('Sign up', function () {
                         expect(browser.location.pathname).to.equal('/rooms');
                         done();
                     });
             });
         });
 
-        it('show the current user name', function (done) {
+        it('show the current user name when signed up', function (done) {
             browser.visit(url + 'signup', function () {
                 browser.fill('input[name=name]', 'Kay Lovelace')
                     .fill('input[name=username]', 'kaylove')
                     .fill('input[name=password]', 'ilovebluejuly')
                     .fill('input[name=email]', 'klovelace@email.com')
-                    .pressButton('Submit', function () {
+                    .pressButton('Sign up', function () {
                         expect(browser.text('body')).to.include('Currently logged in as: Kay Lovelace');
                         done();
                     });
+            });
+        });
+
+        it('can sign out', function (done) {
+            browser.visit(url + 'signup', function () {
+                browser.fill('input[name=name]', 'Kay Lovelace')
+                    .fill('input[name=username]', 'kaylove')
+                    .fill('input[name=password]', 'ilovebluejuly')
+                    .fill('input[name=email]', 'klovelace@email.com')
+                    .pressButton('Sign up', function () {
+                        browser.pressButton('Sign out', function () {
+                            expect(browser.text('body')).to.not.include('Currently logged in as: Kay Lovelace');
+                            done();
+                        })
+                });
             });
         });
 
