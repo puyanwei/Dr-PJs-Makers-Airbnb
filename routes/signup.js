@@ -55,12 +55,6 @@ router.post('/', function(req, res) {
         sess.currentUser = newUser;
         console.log(sess.currentUser.name + 'is current user');
         res.redirect('/rooms');
-        // db.rooms.find(function (err, docs) {
-        //     res.render('rooms', {
-        //         rooms: docs,
-        //         currentUser: sess.currentUser
-        //     });
-        // });
     }
 
 });

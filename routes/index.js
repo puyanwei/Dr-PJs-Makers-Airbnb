@@ -14,4 +14,8 @@ router.get('/signin', function(req, res) {
     res.redirect('/users/signin')
 });
 
+router.post('/signin', function(req, res) {
+    res.redirect('/users/signin')
+});
+
 module.exports = router;

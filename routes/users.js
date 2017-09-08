@@ -66,3 +66,4 @@ router.post('/signout', function(req, res) {
     sess.currentUser = undefined;
     res.redirect('/rooms')
 });
+
