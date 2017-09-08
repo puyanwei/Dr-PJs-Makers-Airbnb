@@ -1,12 +1,13 @@
 <html>
 <head>
+<link href="/css/css-reset.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+
     <title>Makers BnB </title>
 </head>
 <body align="center">
 
-<link rel="stylesheet" href="../../style.css">
-
 <% if(currentUser !== undefined) { %>
-<h3>  Currently logged in as: <%= currentUser.name %> </h3>
+<p>  Currently logged in as: <%= currentUser.name %> </p>
 <% } %>
-

@@ -1,13 +1,25 @@
 <% include partials/header %>
-
-<h1>Welcome to Dr. PJs MakersBnB!</h1>
-
-<form method="POST" action="/rooms">
-	<button type="submit" name="Visit Rooms">Visit Rooms</button>
-</form>
-
-<form method="POST" action="/signup">
-	<button type="submit" name="Sign Up">Sign Up</button>
-</form>
+<section id="intro">
+	<div>
+		<h1>Dr. PJs MakersBnB</h1>
+		<p>Creepy houses for all your occasions!</p>
+	</div>
+</section>
+<section id="buttons">
+	<div>
+		<row>
+			<div class="col-md-6 float-left">
+				<form method="POST" action="/rooms">
+					<button type="submit" name="Visit Rooms" class="button-index">Visit Rooms</button>
+				</form>
+			</div>
+			<div class="col-md-6 float-right">
+				<form method="POST" action="/signup">
+					<button type="submit" name="Sign Up" class="button-index">Sign Up</button>
+				</form>
+			</div>
+		</row>
+	</div>
+</section>
 
 <% include partials/footer %>
