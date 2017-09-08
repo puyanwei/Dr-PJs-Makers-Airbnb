@@ -102,22 +102,6 @@ describe('App', function() {
                     });
             });
         });
-
-        // it('displays error if info is missing in sign up', function (done) {
-        //     console.log(1);
-        //     browser.visit(url + 'signup', function () {
-        //         console.log(2);
-        //         browser.fill('input[name=username]', 'kaylove')
-        //             .pressButton('Sign up', function () {
-        //                 console.log(3);
-        //                 expect(browser.text('body')).to.include('Password must be filled');
-        //                 done();
-        //                 console.log(4);
-        //             });
-        //     });
-        //     console.log(5);
-        // });
-
         it('displays error if info is missing in sign in', function (done) {
             browser.visit(url + 'signin', function () {
                 browser.fill('input[name=username]', 'kaylove')
@@ -141,5 +125,3 @@ describe('App', function() {
         })
     });
 });
-
-// location, description and price
