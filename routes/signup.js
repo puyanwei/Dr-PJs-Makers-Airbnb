@@ -37,12 +37,10 @@ router.post('/', function(req, res) {
     var errors = req.validationErrors();
 
     if (errors) {
-        db.users.find(function (err, docs) {
-            res.render('signup', {
-                errors: errors,
-                currentUser: sess.currentUser,
-                signUpError: signUpError
-            });
+        res.render('signup', {
+            errors: errors,
+            currentUser: sess.currentUser,
+            signUpError: signUpError
         });
     } else {
         var newUser = new User(
@@ -51,9 +49,7 @@ router.post('/', function(req, res) {
             req.body.password,
             req.body.email);
         db.users.insert(newUser);
-        console.log(newUser);
         sess.currentUser = newUser;
-        console.log(sess.currentUser.name + 'is current user');
         res.redirect('/rooms');
     }
 
