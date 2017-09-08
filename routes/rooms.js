@@ -7,10 +7,9 @@ var session = require('express-session');
 
 var sess;
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     sess = req.session;
-
-      db.rooms.find(function (err, docs) {
+    db.rooms.find(function (err, docs) {
         res.render('rooms', {
             rooms: docs,
             currentUser: sess.currentUser
@@ -18,11 +17,9 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
     sess = req.session;
-
     db.rooms.find(function (err, docs) {
-      // console.log(docs);
       res.render('rooms', {
           rooms: docs,
           currentUser: sess.currentUser
@@ -32,8 +29,6 @@ router.post('/', function(req, res, next) {
 
 router.post('/book', function(req, res) {
   sess = req.session;
-
-  var roomname1 = req.body.roomName;
     var room;
     db.rooms.find(function (err, docs) {
       docs.forEach(function(thisRoom) {
@@ -46,17 +41,18 @@ router.post('/book', function(req, res) {
             currentUser: req.currentUser
         });
     });
+});
 
-
+router.post('/unbook', function(req, res) {
+    sess = req.session;
+    db.rooms.update({title : req.body.unbookRoomName}, {$set : {booked : false}});
+    res.redirect('/rooms');
 });
 
 
 router.post('/confirm', function(req, res) {
-
     console.log(req.body.roomName);
     db.rooms.update({title : req.body.bookRoomName}, {$set : {booked : true}});
-    // console.log(db.rooms.find({title : req.body.roomName}));
-
     res.redirect('/rooms');
 });
 
@@ -82,7 +78,7 @@ router.post('/add', function(req, res) {
             });
         });
     } else {
-        var newRoom = new Room(sess.currentUser.name,
+        var newRoom = new Room(sess.currentUser.username,
             req.body.title,
             req.body.location,
             req.body.description,
