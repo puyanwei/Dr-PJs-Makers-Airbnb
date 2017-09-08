@@ -43,18 +43,43 @@ describe('Booking a Room', function() {
                     expect(browser.text('body')).to.include('Bethnal Green');
                     expect(browser.text('body')).to.include('Not worth it');
                     browser.assert.element('form button[type="submit"][name="bookRoomName"]');
+                    browser.assert.element('form button[type="submit"][name="viewRooms"]');
                     done()
                 })
             })
         });
 
-        it('can change a room to booked', function(done) {
-            browser.visit(url + 'rooms', function() {
-                browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
-                    assert.equal(browser.text('#BookmyRoom'), '- This room has been booked');
-                    done()
-                })
+        it('shows that a room has been booked', function(done) {
+          browser.visit(url + 'rooms', function() {
+            browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
+              browser.pressButton('form button[type="submit"][name="bookRoomName"]', function() {
+                expect(browser.location.pathname).to.equal('/rooms');
+                assert.equal(browser.text('#BookmyRoom'), '- This room has been booked');
+                done()
+              })
             })
+          });
         });
+
+        it('takes you back to the rooms page and ', function(done) {
+          browser.visit(url + 'rooms', function() {
+            browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
+              browser.pressButton('form button[type="submit"][name="viewRooms"]', function() {
+                expect(browser.location.pathname).to.equal('/rooms');
+                browser.assert.element('#BookmyRoom');
+                done()
+              })
+            })
+          });
+        });
+
+        // it('can change a room to booked', function(done) {
+        //     browser.visit(url + 'rooms', function() {
+        //         browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
+        //             assert.equal(browser.text('#BookmyRoom'), '- This room has been booked');
+        //             done()
+        //         })
+        //     })
+        // });
     });
 });
