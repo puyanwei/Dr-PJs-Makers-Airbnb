@@ -30,10 +30,31 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.post('/book', function(req, res) {
+  sess = req.session;
+
+  var roomname1 = req.body.roomName;
+    var room;
+    db.rooms.find(function (err, docs) {
+      docs.forEach(function(thisRoom) {
+        if (thisRoom.title === req.body.roomName) {
+          room = thisRoom
+        }
+      });
+        res.render('book', {
+            room: room,
+            currentUser: req.currentUser
+        });
+    });
+
+
+});
+
+
 router.post('/confirm', function(req, res) {
 
     console.log(req.body.roomName);
-    db.rooms.update({title : req.body.roomName}, {$set : {booked : true}});
+    db.rooms.update({title : req.body.bookRoomName}, {$set : {booked : true}});
     // console.log(db.rooms.find({title : req.body.roomName}));
 
     res.redirect('/rooms');
@@ -41,7 +62,7 @@ router.post('/confirm', function(req, res) {
 
 router.get('/add', function(req, res){
     res.render('add')
-})
+});
 
 router.post('/add', function(req, res) {
     sess = req.session;
