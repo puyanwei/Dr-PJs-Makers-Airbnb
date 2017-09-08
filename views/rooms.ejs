@@ -3,9 +3,6 @@
 <link rel="stylesheet" href="../style.css">
 
 
-
-
-
 <h2 class="blueClass">Rooms</h2>
 
 <ul>
@@ -30,11 +27,13 @@
     <% })%>
 </ul>
 
+
+
+<% if (currentUser != undefined) { %>
+
 <form method="POST" action="/rooms/add">
     <button type="submit" name="newRoom">New room</button>
 </form>
-
-<% if (currentUser != undefined) { %>
 <form method="POST" action="/users/signout">
     <button type="submit" name="signOut" id="signOut">Sign out</button>
 
@@ -42,6 +41,9 @@
 <% } else {%>
 <form method="get" action="/signup">
     <button type="submit" name="signUp">Sign up</button>
+</form>
+<form method="get" action="/signin">
+    <button type="submit" name="signIn">Sign in</button>
 </form>
 <% } %>
 

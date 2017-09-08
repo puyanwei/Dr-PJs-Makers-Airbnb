@@ -30,20 +30,6 @@ router.post('/', function(req, res, next) {
     });
 });
 
-// router.post('/book', function(req, res) {
-//     var room = db.rooms.find({title : req.body.roomName});
-//     console.log(req.body.roomName);
-//     // console.log(room);
-//     console.log(room.title);
-//     db.rooms.find(function (err, docs) {
-//         // console.log(docs);
-//         res.render('book', {
-//             room: room,
-//             current_user: current_user
-//         });
-//     });
-// });
-
 router.post('/confirm', function(req, res) {
 
     console.log(req.body.roomName);
@@ -64,7 +50,6 @@ router.post('/add', function(req, res) {
     req.checkBody('location' , 'Location must be filled in').notEmpty();
     req.checkBody('description', 'Description must be filled in').notEmpty();
     req.checkBody('price'       , 'Price must be filled in').notEmpty();
-    req.checkBody('owner'       , 'Owner must be filled in').notEmpty();
 
     var errors = req.validationErrors();
 
@@ -76,7 +61,7 @@ router.post('/add', function(req, res) {
             });
         });
     } else {
-        var newRoom = new Room(req.body.owner,
+        var newRoom = new Room(sess.currentUser.name,
             req.body.title,
             req.body.location,
             req.body.description,
