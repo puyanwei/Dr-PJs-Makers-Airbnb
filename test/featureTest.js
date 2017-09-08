@@ -5,6 +5,9 @@ browser = new Browser(),
 url = 'http://localhost:1337/';
 var Camo = require('camo');
 
+var mongojs = require('mongojs');
+var db = mongojs('makersbnb', ['rooms', 'users']);
+
 describe('App', function() {
 
 
@@ -50,6 +53,14 @@ describe('App', function() {
     });
 
     describe('/signup', function(){
+
+        beforeEach(function() {
+            db.users.remove({});
+        });
+
+        afterEach(function() {
+            db.users.remove({});
+        });
 
 
         it('goes to the room page after signing up', function(done){

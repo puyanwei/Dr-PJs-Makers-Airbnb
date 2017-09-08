@@ -35,7 +35,6 @@ describe('Booking a Room', function() {
             })
         });
 
-
         // it('takes you to a page showing room details and availability', function(done) {
         //     browser.visit(url + 'rooms', function() {
         //         browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
@@ -50,7 +49,6 @@ describe('Booking a Room', function() {
         //     })
         // });
 
-
         it('can change a room to booked', function(done) {
             browser.visit(url + 'rooms', function() {
                 browser.pressButton('form button[type="submit"][value="myRoom"]', function() {
@@ -58,27 +56,6 @@ describe('Booking a Room', function() {
                     done()
                 })
             })
-        });
-
-
-
-
-    });
-
-    describe('/signup', function(){
-
-        it('creates a new user when you sign up', function(done){
-            browser.visit(url + 'signup', function() {
-                browser.fill('input[name=name]', 'Kay Lovelace')
-                    .fill('input[name=username]', 'kaylove')
-                    .fill('input[name=password]', 'ilovebluejuly')
-                    .fill('input[name=email]', 'klovelace@email.com')
-                    .pressButton('Submit', function() {
-                        expect(browser.location.pathname).to.equal('/rooms');
-                        console.log(browser.location.pathname);
-                        done();
-                    });
-            });
         });
     });
 });

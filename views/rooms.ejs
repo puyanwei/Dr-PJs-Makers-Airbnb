@@ -6,7 +6,7 @@
 <h2 class="blueClass">Rooms</h2>
 
 
-<h3>  <%= users[users.length - 1].name %> </h3>
+<h3>  Currently logged in as: <%= users[users.length - 1].name %> </h3>
 
 <ul>
     <% rooms.forEach(function(room) { %>
@@ -19,7 +19,7 @@
         <div id="Book<%= room.title %>" >
         <% if (room.booked === false) { %>
         <form method="POST" action="/rooms/confirm">
-            <button type="submit" name="roomName" value="Book<%= room.title %>">Book This Room</button>
+            <button type="submit" name="roomName" value="<%= room.title %>">Book This Room</button>
         </form>
         <% } else { %>
             - This room has been booked
