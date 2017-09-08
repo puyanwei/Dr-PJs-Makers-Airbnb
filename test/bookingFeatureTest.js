@@ -72,14 +72,5 @@ describe('Booking a Room', function() {
             })
           });
         });
-
-        // it('can change a room to booked', function(done) {
-        //     browser.visit(url + 'rooms', function() {
-        //         browser.pressButton('form button[type="submit"][value="mySpecialRoom"]', function() {
-        //             assert.equal(browser.text('#BookmySpecialRoom'), '- This room has been booked');
-        //             done()
-        //         })
-        //     })
-        // });
     });
 });
