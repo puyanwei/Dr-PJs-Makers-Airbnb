@@ -1,58 +1,64 @@
 <% include partials/header %>
+<section id="rooms">
+    <h2>Rooms</h2>
 
-<link rel="stylesheet" href="../style.css">
+    <div>
+        <ul>
+            <% rooms.forEach(function(room) { %>
+
+            <li>
+                <li>Room name: <%= room.title %></li>
+                <li>Owner: <%= room.owner %></li>
+                <li>Location: <%= room.location %></li>
+                <li>Description: <%= room.description %></li>
+                <li>Price: £<%= room.price %></li>
+                <div class="button-rooms" id="Book<%= room.title %>">
+                    <% if (room.booked === false) { %>
+
+                    <form class="button-standard" method="POST" action="/rooms/book">
+                        <button type="submit" name="roomName" value="<%= room.title %>">Book This Room</button>
+                    </form>
 
 
-<h2 class="blueClass">Rooms</h2>
-
-<ul>
-    <% rooms.forEach(function(room) { %>
-    <li class="blueClass">
-        <%= room.title %>,
-        <%= room.owner %>,
-        <%= room.location %>,
-        <%= room.description %>,
-        £<%= room.price %>
-        <div id="Book<%= room.title %>" >
-        <% if (room.booked === false) { %>
-            <% if(currentUser !== undefined) { %>
-        <form method="POST" action="/rooms/book">
-            <button type="submit" name="roomName" value="<%= room.title %>">Book This Room</button>
-        </form>
-            <% } %>
-        <% } else { %>
-            - This room has been booked
-            <% if(currentUser !== undefined) { %>
+                </div>
+                <% } else { %>
+                This room has been booked
+                <% if(currentUser !== undefined) { %>
                 <% if(currentUser.name === room.owner) { %>
+                <div class="button-standard">
                 <form method="POST" action="/rooms/unbook">
-                    <button type="submit" name="unbookRoomName" value="<%= room.title %>">Make This Room Free</button>
+                    <button class="button-standard" type="submit" name="unbookRoomName" value="<%= room.title %>">Make This Room Free</button>
                 </form>
+                </div>
                 <% } %>
-            <% } %>
-        <% } %>
-        </div>
-    </li>
-    <br>
-    <% })%>
-</ul>
+                <% } %>
+                <% } %>
+            </li>
+            <br>
+            <% })%>
+        </ul>
+    </div>
+</section>
 
-<% if (currentUser != undefined) { %>
 
-<form method="POST" action="/rooms/add">
-    <button type="submit" name="newRoom">New room</button>
-</form>
-<form method="POST" action="/users/signout">
-    <button type="submit" name="signOut" id="signOut">Sign out</button>
+<section>
+    <% if (currentUser != undefined) { %>
 
-</form>
-<% } else {%>
-<form method="get" action="/signup">
-    <button type="submit" name="signUp">Sign up</button>
-</form>
-<form method="get" action="/signin">
-    <button type="submit" name="signIn">Sign in</button>
-</form>
-<% } %>
+    <form class="button-standard" method="POST" action="/rooms/add">
+        <button type="submit" name="newRoom">New room</button>
+    </form>
+    <form class="button-standard" method="POST" action="/users/signout">
+        <button type="submit" name="signOut" id="signOut">Sign out</button>
 
+    </form>
+    <% } else {%>
+    <form class="button-standard" method="get" action="/signup">
+        <button class="button-rooms" type="submit" name="signUp">Sign up</button>
+    </form>
+    <form class="button-standard" method="get" action="/signin">
+        <button type="submit" name="signIn">Sign in</button>
+    </form>
+    <% } %>
+</section>
 
 <% include partials/footer %>

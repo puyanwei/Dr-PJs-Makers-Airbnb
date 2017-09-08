@@ -22,6 +22,7 @@ app.use(function(req, res, next) {
 });
 app.use(expressValidator());
 app.use(session({secret: 'drpjs'}));
+app.use(express.static(__dirname + '/public'));
 
 
 app.set('view engine', 'ejs');
