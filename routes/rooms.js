@@ -4,7 +4,8 @@ var Room = require('../models/room');
 
 var express = require('express');
 var router = express.Router();
-var current_user = null;
+var currentUser = null;
+var session = require('express-session');
 
 
 var usersDB;
@@ -12,7 +13,10 @@ db.users.find(function (err,docs) {
   usersDB = docs;
 });
 
+var sess;
+
 router.get('/', function(req, res, next) {
+    sess = req.session;
 
       db.rooms.find(function (err, docs) {
         db.users.find(function (err,docs) {
@@ -23,8 +27,7 @@ router.get('/', function(req, res, next) {
         // console.log(docs);
         res.render('rooms', {
             rooms: docs,
-            users: usersDB,
-            current_user: current_user
+            currentUser: sess.currentUser
         });
     });
 });
@@ -41,8 +44,7 @@ router.post('/', function(req, res, next) {
       // console.log(docs);
       res.render('rooms', {
           rooms: docs,
-          users: usersDB,
-          current_user: current_user
+          currentUser: sess.currentUser
       });
   });
 });
@@ -87,6 +89,7 @@ router.post('/add', function(req, res) {
     if (errors) {
         db.rooms.find(function (err, docs) {
             res.render('add', {
+                currentUser: sess.currentUser,
                 errors: errors
             });
         });

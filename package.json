@@ -15,6 +15,7 @@
     "chai-dom": "^1.5.0",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "express-validator": "^4.1.1",
     "mocha": "^3.5.0",
     "mongojs": "^2.4.1",

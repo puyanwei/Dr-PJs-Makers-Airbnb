@@ -8,6 +8,7 @@ var signup = require('./routes/signup');
 var index = require('./routes/index');
 var rooms = require('./routes/rooms');
 var users = require('./routes/users');
+var session = require('express-session');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(function(req, res, next) {
   next()
 });
 app.use(expressValidator());
+app.use(session({secret: 'drpjs'}));
 
 
 app.set('view engine', 'ejs');

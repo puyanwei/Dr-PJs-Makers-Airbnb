@@ -7,6 +7,7 @@ var Camo = require('camo');
 
 var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['rooms', 'users']);
+var sess;
 
 describe('App', function() {
 
@@ -77,7 +78,6 @@ describe('App', function() {
                         done();
                     });
             });
-
         });
 
         it('show the current user name', function (done) {

@@ -4,20 +4,28 @@ var mongojs = require('mongojs');
 var db = mongojs('makersbnb', ['users']);
 var User = require('../models/user');
 var Room = require('../models/room');
+var session = require('express-session');
 
-console.log('signup')
+var currentUser = undefined;
+
+
+
 
 // router.post('/', function(req, res) {
 //     res.redirect('/signup');
 // });
 
+var sess;
+
 router.get('/', function(req, res) {
     res.render('signup', {
+        currentUser : currentUser
     });
 });
 
 
 router.post('/', function(req, res) {
+    sess = req.session;
 
     req.checkBody('name'     , 'Name is required').notEmpty();
     req.checkBody('username' , 'Username must be filled in').notEmpty();
@@ -29,7 +37,8 @@ router.post('/', function(req, res) {
     if (errors) {
         db.users.find(function (err, docs) {
             res.render('signup', {
-                errors: errors
+                errors: errors,
+                currentUser: currentUser
             });
         });
     } else {
@@ -40,10 +49,15 @@ router.post('/', function(req, res) {
             req.body.email);
         db.users.insert(newUser);
         console.log(newUser);
-        currentUser = newUser
-        db.users.find(function (err, docs) {
-            res.redirect('/rooms')
-        });
+        sess.currentUser = newUser;
+        console.log(sess.currentUser.name + 'is current user');
+        res.redirect('/rooms');
+        // db.rooms.find(function (err, docs) {
+        //     res.render('rooms', {
+        //         rooms: docs,
+        //         currentUser: sess.currentUser
+        //     });
+        // });
     }
 
 });

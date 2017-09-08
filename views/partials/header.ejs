@@ -6,5 +6,7 @@
 
 <link rel="stylesheet" href="../../style.css">
 
-<h3>  Currently logged in as: <%=  %> </h3>
+<% if(currentUser != undefined) { %>
+<h3>  Currently logged in as: <%= currentUser.name %> </h3>
+<% } %>
 
