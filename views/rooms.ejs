@@ -15,11 +15,20 @@
         £<%= room.price %>
         <div id="Book<%= room.title %>" >
         <% if (room.booked === false) { %>
+            <% if(currentUser !== undefined) { %>
         <form method="POST" action="/rooms/book">
             <button type="submit" name="roomName" value="<%= room.title %>">Book This Room</button>
         </form>
+            <% } %>
         <% } else { %>
             - This room has been booked
+            <% if(currentUser !== undefined) { %>
+                <% if(currentUser.name === room.owner) { %>
+                <form method="POST" action="/rooms/unbook">
+                    <button type="submit" name="unbookRoomName" value="<%= room.title %>">Make This Room Free</button>
+                </form>
+                <% } %>
+            <% } %>
         <% } %>
         </div>
     </li>

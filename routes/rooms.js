@@ -43,6 +43,12 @@ router.post('/book', function(req, res) {
     });
 });
 
+router.post('/unbook', function(req, res) {
+    sess = req.session;
+    db.rooms.update({title : req.body.unbookRoomName}, {$set : {booked : false}});
+    res.redirect('/rooms');
+});
+
 
 router.post('/confirm', function(req, res) {
     console.log(req.body.roomName);
