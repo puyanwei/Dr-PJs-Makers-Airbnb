@@ -13,7 +13,13 @@ var sess;
 
 describe('App', function() {
 
+    beforeEach(function () {
+        db.rooms.insert({title: 'Makers Academy', owner : 'Stephen', location : 'London', description : 'My lovely home', price: '200'})
+    });
 
+    afterEach(function () {
+        db.rooms.remove({title: 'Makers Academy'});
+    });
 
     describe('/', function() {
 
@@ -34,7 +40,7 @@ describe('App', function() {
                     expect(browser.text('body')).to.include('Makers Academy');
                     expect(browser.text('body')).to.include('My lovely home');
                     expect(browser.text('body')).to.include('£200');
-                    expect(browser.text('body')).to.include('Kay Lovelace');
+                    expect(browser.text('body')).to.include('Stephen');
                     done();
                 });
             });
@@ -59,14 +65,15 @@ describe('App', function() {
 
         beforeEach(function () {
             db.users.remove({});
-            db.users.insert({'name' : 'Stephen', username : 'sgeller', password : 'password123', email: 'test@email.com'})
+            db.users.insert({name: 'Stephen', username : 'sgeller', password : 'password123', email: 'test@email.com'})
+            // db.rooms.insert({title: 'Makers Academy', owner : 'Stephen', location : 'London', description : 'My lovely home', price: '200'})
         });
 
         afterEach(function () {
             db.users.remove({});
-            db.users.insert({'name' : 'Stephen', username : 'sgeller', password : 'password123', email: 'test@email.com'})
+            // db.rooms.remove({title: 'Makers Academy'});
+            db.users.insert({name : 'Stephen', username : 'sgeller', password : 'password123', email: 'test@email.com'})
         });
-
 
         it('goes to the room page after signing up', function (done) {
             browser.visit(url + 'signup', function () {
