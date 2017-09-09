@@ -5,7 +5,7 @@ This web application allows users to list rooms they have available, and to book
  
 Once signed in:  
 - Users can list multiple spaces with a name, a short description of the space, a location and a price per night.  
-- Users can book a room. Once a room has been booked, it can't be booked again.  
+- Users can book a room. Once a room has been booked, it can't be booked again.
 
 How to Install
 -----
