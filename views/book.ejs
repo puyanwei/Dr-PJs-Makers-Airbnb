@@ -1,19 +1,40 @@
 <% include partials/header %>
 
-<li class="blueClass">
-    <%= room.title %>,
-    <%= room.owner %>,
-    <%= room.location %>,
-    <%= room.description %>,
+
+
+<div style="border-radius: 10px; background-color: white;; box-shadow: 10px 10px grey; text-align: center; padding: 0; margin: auto; padding: 10; width: 30%; opacity: 0.8">
+<li>
+    <%= room.title %>
+</li>
+<br>
+<li>
+   Owned by <%= room.owner.name %>
+</li>
+    <br>
+<li>
+    <%= room.location %>
+</li>
+    <br>
+<li>
+    <%= room.description %>
+</li>
+    <br>
+<li>
     £<%= room.price %>
 </li>
+    <br>
+<li>
+    Available from <%= room.startDate %> to <%= room.endDate %>
+</li>
+<br>
+</div>
 
 <form class="button-standard" method="POST" action="/rooms/confirm">
-    <button type="submit" name="bookRoomName" value="<%= room.title %>">Book This Room</button>
+    <button type="submit" class="btn btn-primary button" name="bookRoomName" value="<%= room.title %>"><span>Book This Room</span></button>
 </form>
 
 <form class="button-standard" method="GET" action="/rooms">
-    <button type="submit" name="viewRooms">View Rooms</button>
+    <button type="submit" class="btn btn-primary button" name="viewRooms"><span>View Rooms</span></button>
 </form>
 
 <% include partials/footer %>

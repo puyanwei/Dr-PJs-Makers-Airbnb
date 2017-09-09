@@ -1,2 +1,6 @@
 </body>
+<% if(currentUser !== undefined) { %>
+<p class="loggedInAs" style="text-shadow: 1px 1px black">  Currently logged in as: <%= currentUser.name %> </p>
+<% } %>
+
 </html>

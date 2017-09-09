@@ -12,9 +12,9 @@ How to Install
 Clone this repository by typing 'git clone https://github.com/stephengeller/DrPJsMakersBnB' into your command line.  
 To set up mongo database, type the following into your command line:  
 ````
-  'brew install mongodb'  
-  'sudo mkdir -p /data/db'  
-  'sudo chown -R `id -un` /data/db'  
+  $ brew install mongodb 
+  $ sudo mkdir -p /data/db
+  $ sudo chown -R `id -un` /data/db
 ````
 In your command line, 'npm install' to install all the relevant packages.
 

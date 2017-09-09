@@ -7,6 +7,7 @@ body {
   font-family: 'source-sans-pro', sans-serif;
   line-height: 1.25em;
   color: #000;
+
 }
 
 h1,h2,h3,h4,h5{
@@ -57,12 +58,114 @@ section {
 }
 
 .button-rooms {
-   margin: 20px;
+   margin: 10px;
    /*border-bottom: 1px solid black;*/
  /*  padding-bottom: 20px;*/
 }
 
 .button-standard {
+   color: #004085;
    padding: 10px;
-   margin-bottom: 10px;
+   margin: 10px;
+}
+
+
+.roomslist {
+    border: 1px solid black;
+    margin: auto;
+    padding: 15px;
+    width: 40%;
+    box-shadow: 10px 10px grey;
+    font-size: inherit;
+    border-radius: 10px;
+    background-color: white;
+    background: rgba(100%,100%,100%,.7);
+    text-align: center;
+}
+
+.addRoom {
+    margin: auto;
+    padding: auto;
+    width: 20%;
+    font-size: inherit;
+    border-radius: 10px;
+    background-color: white;
+    background: rgba(100%,100%,100%,.7);
+    text-align: center;
+}
+
+.loggedInAs {
+    margin: auto;
+    padding-left: 10px;
+    font-size: smaller;
+    text-align: bottom;
+    color: white;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.header {
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 20;
+    text-align: center;
+}
+
+.bg {
+    /* The image used */
+    background-image: url(http://book.amtrakvacations.com/images/CanadianRockies-Fotolia_68577093_Subscription_Monthly_M.jpg);
+
+    /* Full height */
+    height: auto;
+
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.inputPrompt {
+    color: white;
+    text-shadow: 1px 1px black;
+    font-size: larger
+}
+
+.inputBar {
+    min-width:50px!important;
+    max-width:99.99%!important;
+    transition: width 0.25s;
+    text-align:center;
 }

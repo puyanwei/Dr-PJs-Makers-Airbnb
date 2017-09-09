@@ -10,27 +10,27 @@
 </ul>
 <% } %>
 
-<h2>Add Room</h2>
-<form method="POST" action="/rooms/add">
-    <label>Room Name</label><br>
-    <input type="text" name="title">
+<form method="POST" action="/rooms/add" class="addRoom" style="background-color: rgba(100%,100%,100%, 0.3)">
+    <h2 class="inputPrompt" style="font-size: xx-large">Add Room</h2>
+    <label class="inputPrompt">Listing Name</label><br>
+    <input type="text" name="title" class="inputBar" placeholder="Sell it!">
     <br>
-    <label>Location</label><br>
-    <input type="text" name="location">
+    <label class="inputPrompt">Location</label><br>
+    <input type="text" name="location" class="inputBar" placeholder="Where is it?">
     <br>
-    <label>Description</label><br>
-    <input type="text" name="description">
+    <label class="inputPrompt">Description</label><br>
+    <input type="text" name="description" class="inputBar" placeholder="Say something nice!">
     <br>
-    <label>Price (£/pm)</label><br>
-    <input type="text" name="price">
+    <label class="inputPrompt">Price</label><br>
+    <input type="number" name="price" class="inputBar"  placeholder="Per month">
     <br>
-    <label>Date available: Start</label><br>
+    <label class="inputPrompt">Date available: Start</label><br>
     <input type="date" name="startDate">
     <br><br>
-    <label>Date available: End</label><br>
+    <label class="inputPrompt">Date available: End</label><br>
     <input type="date" name="endDate">
     <br><br>
-    <button type="submit" name="Submit">Submit</button>
+    <button type="submit" class="btn btn-primary button" name="Submit"><span>Submit</span></button>
 </form>
 
 <% include partials/footer %>
