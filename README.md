@@ -1,6 +1,6 @@
 # Dr PJ's Makers Air Bnb
 This web application allows users to list rooms they have available, and to book rooms. This was an one week group project of which we named it using acronyms of our names;
-[**d**avid-div](https://github.com/david-div), [**r**olandosorbelli](https://github.com/rolandosorbelli), [**p**yan83](https://www.github.com/pyan83)
+[**d**avid-div](https://github.com/david-div), [**r**olandosorbelli](https://github.com/rolandosorbelli), [**p**yan83](https://www.github.com/pyan83),
 [**j**enniferbacon01](https://github.com/jenniferbacon01), and
 [**s**tephengeller](https://github.com/stephengeller).
 
